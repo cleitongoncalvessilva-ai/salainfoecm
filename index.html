@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Agendamento da Sala de Informática - Escola Estadual Emília Cabral Mota">
+  <title>Agendamento | Sala de Informática - ECM</title>
+  <link rel="icon" href="assets/logo-ecm.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/logo-ecm.png" alt="ECM - Escola Estadual Emília Cabral Mota" class="logo">
+      <div>
+        <h1>Agendamento da Sala de Informática</h1>
+        <p>Escola Estadual Emília Cabral Mota</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <span id="authStatus" class="auth-status">Não conectado</span>
+      <button id="loginBtn" class="btn btn-outline">Entrar com Google</button>
+      <button id="logoutBtn" class="btn btn-outline hidden">Sair</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">SALA DE INFORMÁTICA</span>
+        <h2>Escolha um horário disponível</h2>
+        <p>Os horários são consultados diretamente no Google Calendar. Verde significa livre; vermelho significa ocupado.</p>
+      </div>
+      <div class="legend">
+        <span><i class="dot free"></i> Livre</span>
+        <span><i class="dot busy"></i> Ocupado</span>
+      </div>
+    </section>
+
+    <div id="setupWarning" class="notice warning hidden"></div>
+
+    <section class="calendar-shell">
+      <div class="calendar-toolbar">
+        <button id="prevDays" class="icon-btn" aria-label="Dias anteriores">‹</button>
+        <div>
+          <strong id="monthTitle">Carregando...</strong>
+          <div id="rangeTitle" class="muted"></div>
+        </div>
+        <button id="nextDays" class="icon-btn" aria-label="Próximos dias">›</button>
+      </div>
+
+      <div id="daysScroller" class="days-scroller"></div>
+    </section>
+
+    <section id="myReservations" class="my-reservations hidden">
+      <div class="section-title">
+        <div>
+          <span class="eyebrow">MINHAS RESERVAS</span>
+          <h3>Reservas feitas pela sua conta</h3>
+        </div>
+      </div>
+      <div id="myReservationsList" class="reservation-list"></div>
+    </section>
+  </main>
+
+  <div id="bookingModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card">
+      <button class="modal-close" data-close-modal aria-label="Fechar">×</button>
+      <span class="eyebrow">NOVA RESERVA</span>
+      <h2 id="bookingTitle">Reservar sala</h2>
+      <p id="bookingSlot" class="slot-highlight"></p>
+
+      <form id="bookingForm">
+        <div class="form-grid">
+          <label>Nome
+            <input id="firstName" name="firstName" required autocomplete="given-name">
+          </label>
+          <label>Sobrenome
+            <input id="lastName" name="lastName" required autocomplete="family-name">
+          </label>
+          <label>E-mail
+            <input id="email" name="email" type="email" required autocomplete="email">
+          </label>
+          <label>Turma
+            <input id="className" name="className" required placeholder="Ex.: 2º Ano A">
+          </label>
+          <label>Disciplina
+            <input id="subject" name="subject" required placeholder="Ex.: Matemática">
+          </label>
+          <label>Tema da aula
+            <input id="lessonTopic" name="lessonTopic" required placeholder="Ex.: Equações do 2º grau">
+          </label>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" data-close-modal>Cancelar</button>
+          <button type="submit" class="btn btn-primary">Confirmar agendamento</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="busyModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-busy></div>
+    <div class="modal-card compact">
+      <button class="modal-close" data-close-busy aria-label="Fechar">×</button>
+      <span class="eyebrow">HORÁRIO OCUPADO</span>
+      <h2>Este horário já está reservado</h2>
+      <div id="busyDetails" class="busy-details"></div>
+      <button class="btn btn-ghost full" data-close-busy>Fechar</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://apis.google.com/js/api.js" async defer></script>
+  <script type="module" src="js/config.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

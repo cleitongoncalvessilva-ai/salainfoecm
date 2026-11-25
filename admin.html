@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel | Sala de Informática - ECM</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-page">
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/logo-ecm.png" alt="ECM" class="logo">
+      <div>
+        <h1>Painel de utilização</h1>
+        <p>Sala de Informática • ECM</p>
+      </div>
+    </div>
+    <a class="btn btn-outline" href="index.html">Voltar ao agendamento</a>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">GESTÃO</span>
+        <h2>Uso da Sala de Informática</h2>
+        <p>Filtre os registros como em uma planilha e acompanhe professor, turma e disciplina.</p>
+      </div>
+    </section>
+
+    <div id="adminSetupWarning" class="notice warning hidden"></div>
+
+    <section class="stats-grid">
+      <article class="stat-card"><span>Total de reservas</span><strong id="totalReservations">—</strong></article>
+      <article class="stat-card"><span>Professor destaque</span><strong id="topTeacher">—</strong></article>
+      <article class="stat-card"><span>Turma destaque</span><strong id="topClass">—</strong></article>
+      <article class="stat-card"><span>Disciplina destaque</span><strong id="topSubject">—</strong></article>
+    </section>
+
+    <section class="filters card">
+      <div class="section-title"><div><span class="eyebrow">FILTROS</span><h3>Refine os dados</h3></div></div>
+      <div class="filter-grid">
+        <label>Professor
+          <select id="teacherFilter"><option value="">Todos</option></select>
+        </label>
+        <label>Turma
+          <select id="classFilter"><option value="">Todas</option></select>
+        </label>
+        <label>Disciplina
+          <select id="subjectFilter"><option value="">Todas</option></select>
+        </label>
+        <label>De
+          <input id="fromDate" type="date">
+        </label>
+        <label>Até
+          <input id="toDate" type="date">
+        </label>
+        <button id="clearFilters" class="btn btn-ghost filter-clear">Limpar filtros</button>
+      </div>
+    </section>
+
+    <section class="card table-card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th><th>Horário</th><th>Professor</th><th>Turma</th><th>Disciplina</th><th>Tema da aula</th><th>E-mail</th>
+            </tr>
+          </thead>
+          <tbody id="dataBody"></tbody>
+        </table>
+      </div>
+      <div id="emptyState" class="empty hidden">Nenhum registro encontrado com os filtros atuais.</div>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="https://apis.google.com/js/api.js" async defer></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script type="module" src="js/config.js"></script>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
